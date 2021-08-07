@@ -1,0 +1,21 @@
+.form-box{
+    width: 100%;
+    display: flex;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.userInput{
+    width: 30%;
+    border-radius: 10px;
+}
+.select{
+    width: 25%;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px;
+}
