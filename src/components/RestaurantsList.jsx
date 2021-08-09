@@ -1,9 +1,11 @@
 import axios from "../APIS/axios";
 import React, { useContext, useEffect } from "react";
+import {useHistory} from 'react-router-dom'
 import { RestaurantContext } from "../context/RestaurantsContext";
 
 const RestaurantsList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantContext);
+  const history = useHistory();
   useEffect(() => {
     const getAllRestaurants = async () => {
       try {
@@ -16,6 +18,21 @@ const RestaurantsList = () => {
     };
     getAllRestaurants();
   }, [setRestaurants]);
+
+  const handleDelete = async (id) =>{
+    try{
+      await axios.delete(`/${id}`);
+      setRestaurants(restaurants.filter((restaurant)=>{
+        return restaurant.id !== id
+      }))
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const handleUpdate = (id) =>{
+    history.push(`/restaurants/${id}/update`)
+  }
   return (
     <div className="list-item">
       <table className="table table-hover table-dark">
@@ -39,10 +56,10 @@ const RestaurantsList = () => {
                   <td>{"$".repeat(item.price_range)}</td>
                   <td>4</td>
                   <td>
-                    <button className="btn btn-warning">Update</button>
+                    <button onClick={()=>handleUpdate(item.id)} className="btn btn-warning">Update</button>
                   </td>
                   <td>
-                    <button className="btn btn-danger">Delete</button>
+                    <button onClick={()=> handleDelete(item.id)} className="btn btn-danger">Delete</button>
                   </td>
                 </tr>
               );
