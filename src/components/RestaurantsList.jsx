@@ -10,7 +10,7 @@ const RestaurantsList = () => {
     const getAllRestaurants = async () => {
       try {
         const res = await axios.get("/");
-        console.log(res)
+        // console.log(res)
         setRestaurants(res.data.data.restaurants);
       } catch (err) {
         console.log(err);
@@ -19,7 +19,8 @@ const RestaurantsList = () => {
     getAllRestaurants();
   }, [setRestaurants]);
 
-  const handleDelete = async (id) =>{
+  const handleDelete = async (e,id) =>{
+    e.stopPropagation()
     try{
       await axios.delete(`/${id}`);
       setRestaurants(restaurants.filter((restaurant)=>{
@@ -30,8 +31,12 @@ const RestaurantsList = () => {
     }
   }
 
-  const handleUpdate = (id) =>{
+  const handleUpdate = (e,id) =>{
+    e.stopPropagation()
     history.push(`/restaurants/${id}/update`)
+  }
+  const handleRestaurantSelect = (id) =>{
+    history.push(`/restaurants/${id}`)
   }
   return (
     <div className="list-item">
@@ -50,16 +55,16 @@ const RestaurantsList = () => {
           {restaurants &&
             restaurants.map((item) => {
               return (
-                <tr key={item.id}>
+                <tr onClick={()=> handleRestaurantSelect(item.id)} key={item.id}>
                   <td>{item.name}</td>
                   <td>{item.location}</td>
                   <td>{"$".repeat(item.price_range)}</td>
                   <td>4</td>
                   <td>
-                    <button onClick={()=>handleUpdate(item.id)} className="btn btn-warning">Update</button>
+                    <button onClick={(e)=>handleUpdate(e,item.id)} className="btn btn-warning">Update</button>
                   </td>
                   <td>
-                    <button onClick={()=> handleDelete(item.id)} className="btn btn-danger">Delete</button>
+                    <button onClick={(e)=> handleDelete(e,item.id)} className="btn btn-danger">Delete</button>
                   </td>
                 </tr>
               );

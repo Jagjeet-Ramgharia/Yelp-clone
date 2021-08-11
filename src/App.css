@@ -2,7 +2,7 @@
     background-color: lightgrey;
     width: 100%;
     height: 100vh;
-    padding: 30px;
+    /* padding: 30px; */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

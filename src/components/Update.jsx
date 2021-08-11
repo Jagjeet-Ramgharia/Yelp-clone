@@ -21,7 +21,7 @@ const Update = () => {
       }
     };
     fetchData();
-  },[]);
+  },[id]);
 
   const handleUpdate = async (e) =>{
       e.preventDefault();

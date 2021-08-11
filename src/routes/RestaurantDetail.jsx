@@ -1,11 +1,47 @@
-import React from 'react'
+import axios from "../APIS/axios";
+import React, { useContext, useEffect } from "react";
+import { RestaurantContext } from "../context/RestaurantsContext";
+import { useParams } from "react-router-dom";
+import StarRating from "../components/StarRating";
+import Reviews from "../components/Reviews";
+import AddReview from "../components/AddReview";
 
 const RestaurantDetail = () => {
-    return (
-        <div>
-            details
-        </div>
-    )
-}
+  const { selectedRestaurants, setSelectedRestaurants } =
+    useContext(RestaurantContext);
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/${id}`);
+        // console.log(res.data.data)
+        setSelectedRestaurants(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  },[]);
+  return (
+    <div
+      style={{
+        backgroundColor: "lightgrey",
+        padding:"30px"
+      }}
+    >
+      {selectedRestaurants && (
+        <>
+          <h1 className="text-center display-1">
+            {selectedRestaurants.restaurants?.name}
+          </h1>
+          <div className="mt-3">
+            <Reviews reviews={selectedRestaurants.reviews} />
+          </div>
+          <AddReview />
+        </>
+      )}
+    </div>
+  );
+};
 
-export default RestaurantDetail
+export default RestaurantDetail;
