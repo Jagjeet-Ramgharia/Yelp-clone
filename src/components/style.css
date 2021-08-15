@@ -1,44 +1,53 @@
-.form-box{
-    width: 100%;
-    display: flex;
+.form-box {
+  width: 100%;
+  display: flex;
 }
 
-.input{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-evenly;
+.input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
 }
-.userInput{
-    width: 30%;
-    border-radius: 10px;
+.userInput {
+  width: 30%;
+  border-radius: 10px;
 }
-.select{
-    width: 25%;
-    outline: none;
-    border-radius: 10px;
-    padding: 5px;
-}
-
-.add_review{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: black; */
-    padding: 20px;
-    
+.select {
+  width: 25%;
+  outline: none;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-.add_review_form{
-    width: 50%;
-    height: 300px;
-    padding: 20px;
-    /* background-color: black; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 8px 10px 16px -2px rgba(0,0,0,1);
-    background-color: grey;
-    border-radius: 10px;
-    overflow: hidden;
+.add_review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+  padding: 20px;
+}
+
+.add_review_form {
+  width: 50%;
+  height: 300px;
+  padding: 20px;
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 8px 10px 16px -2px rgba(0, 0, 0, 1);
+  background-color: grey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.list-item {
+  padding: 20px;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100% !important;
 }

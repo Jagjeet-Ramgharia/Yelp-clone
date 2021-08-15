@@ -2,6 +2,7 @@ import axios from "../APIS/axios";
 import React, { useContext, useEffect } from "react";
 import {useHistory} from 'react-router-dom'
 import { RestaurantContext } from "../context/RestaurantsContext";
+import StarRating from "./StarRating";
 
 const RestaurantsList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantContext);
@@ -38,6 +39,17 @@ const RestaurantsList = () => {
   const handleRestaurantSelect = (id) =>{
     history.push(`/restaurants/${id}`)
   }
+  const renderRating = (restaurant) =>{
+    if(!restaurant.count){
+      return <span className="text-warning">0 reviews</span>
+    }
+    return(
+      <>
+      <StarRating ratings={restaurant.id}/>
+      <span className="text-warning ml-1">({restaurant.count})</span>
+      </>
+    )
+  }
   return (
     <div className="list-item">
       <table className="table table-hover table-dark">
@@ -59,7 +71,7 @@ const RestaurantsList = () => {
                   <td>{item.name}</td>
                   <td>{item.location}</td>
                   <td>{"$".repeat(item.price_range)}</td>
-                  <td>4</td>
+                  <td>{renderRating(item)}</td>
                   <td>
                     <button onClick={(e)=>handleUpdate(e,item.id)} className="btn btn-warning">Update</button>
                   </td>

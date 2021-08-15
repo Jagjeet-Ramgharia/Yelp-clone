@@ -1,6 +1,7 @@
 import axios from "../APIS/axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import "./style.css";
 
 const AddReview = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const AddReview = () => {
             <input
               type="text"
               id="name"
-              className="form-control"
+              className="form-control review"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}

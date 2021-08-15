@@ -21,12 +21,12 @@ const RestaurantDetail = () => {
       }
     };
     fetchData();
-  },[]);
+  }, [id, setSelectedRestaurants]);
   return (
     <div
       style={{
         backgroundColor: "lightgrey",
-        padding:"30px"
+        padding: "30px",
       }}
     >
       {selectedRestaurants && (
@@ -34,6 +34,16 @@ const RestaurantDetail = () => {
           <h1 className="text-center display-1">
             {selectedRestaurants.restaurants?.name}
           </h1>
+          <div className="text-center">
+            <StarRating
+              ratings={selectedRestaurants.restaurants.average_rating}
+            />
+            <span className="text-warning m-lg-1">
+              {selectedRestaurants.restaurants.count
+                ? `(${selectedRestaurants.restaurants.count})`
+                : "(0)"}
+            </span>
+          </div>
           <div className="mt-3">
             <Reviews reviews={selectedRestaurants.reviews} />
           </div>
